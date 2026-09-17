@@ -64,5 +64,14 @@ canonical (`alternates.canonical`) using a single centralized `siteUrl`
 constant in `profile.ts`, a finalized Person JSON-LD block (adds `url`
 alongside the existing `name`/`email`/`sameAs`), and `sitemap.xml` /
 `robots.txt` routes covering the homepage and all 5 real project pages. No
-verified project or profile facts were changed. Final public smoke testing
-against the live deployment is in progress as part of this same pass.
+verified project or profile facts were changed.
+
+A final public smoke test against the live deployment has passed: homepage
+and all 5 project routes return 200 (unknown slugs still 404), the CV PDF
+and all 10 project screenshots load correctly, canonical/Open
+Graph/Twitter/JSON-LD metadata all resolve to the production domain with no
+`localhost` references, `sitemap.xml` and `robots.txt` are live and correct,
+and the privacy/secret and verified-content checks (no phone number, no
+invented benchmark or adoption claims, LexIA scoped to Experience only) came
+back clean. This is a smoke check, not a formal accessibility or security
+audit.
