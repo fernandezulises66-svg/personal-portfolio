@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { profile } from "@/data/profile";
+import { profile, siteUrl } from "@/data/profile";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,14 +19,16 @@ const siteTitle = `${profile.name} | AI, Data & Software`;
 const siteDescription =
   "Portfolio of Ulises Fernandez Pertierra, Data & Systems Analyst focused on AI agents, data systems, workflow automation, and full-stack software.";
 
-// metadataBase/canonical and openGraph.url are intentionally omitted: the
-// final deployment domain isn't known yet (Iteration 8). Adding a relative
-// openGraph/twitter image path without metadataBase would fail the build, so
-// social preview images are provided entirely via the opengraph-image.tsx
-// file convention instead, which Next.js resolves to an absolute URL itself.
+// metadataBase now points at the real production origin (Iteration 8B). The
+// opengraph-image.tsx/icon.tsx file conventions resolve their absolute URLs
+// against it automatically, as does the homepage's relative canonical below.
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: siteTitle,
   description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: siteTitle,
     description: siteDescription,
@@ -44,9 +46,10 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
+  url: siteUrl,
   email: profile.email ?? undefined,
   sameAs: [profile.githubUrl, profile.linkedinUrl].filter(
-    (url): url is string => Boolean(url),
+    (link): link is string => Boolean(link),
   ),
 };
 

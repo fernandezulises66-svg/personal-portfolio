@@ -1,3 +1,8 @@
+// Real production origin from the live Vercel deployment (Iteration 8B).
+// No trailing slash — consumers compose paths as `${siteUrl}/path`. Update
+// this if a custom domain is attached later.
+export const siteUrl = "https://personal-portfolio-one-neon-84.vercel.app";
+
 export interface Profile {
   name: string;
   shortName: string;

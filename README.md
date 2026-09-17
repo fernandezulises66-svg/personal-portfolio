@@ -3,6 +3,8 @@
 Personal developer portfolio showcasing AI, data, and software projects for
 technical recruiters and hiring managers.
 
+**Live Portfolio:** [personal-portfolio-one-neon-84.vercel.app](https://personal-portfolio-one-neon-84.vercel.app)
+
 ## Stack
 
 - [Next.js](https://nextjs.org) (App Router)
@@ -34,8 +36,8 @@ npm run build  # Production build
 ## Project Structure
 
 - `src/app` — routes, root layout, global styles, and file-based metadata
-  (`icon.tsx`, `opengraph-image.tsx`), including the `projects/[slug]`
-  project-detail route
+  (`icon.tsx`, `opengraph-image.tsx`, `sitemap.ts`, `robots.ts`), including
+  the `projects/[slug]` project-detail route
 - `src/components/layout` — navbar and footer
 - `src/components/sections` — homepage sections (hero, projects, about, experience, education, stack, contact)
 - `src/components/project` — project-detail page composition (architecture flow, screenshot gallery, action buttons)
@@ -48,25 +50,19 @@ lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 7B: Recruiter Layer, CV Integration, SEO, and Final UI Polish.**
+**Iteration 8B: Production Metadata and Final Public Smoke Test.**
 
-Iterations 1–7A established the visual system, five verified projects with
-detail pages and screenshots, real work/education background, and a public
-recruiter contact layer (email, LinkedIn, GitHub). This iteration adds an
-SEO/social metadata foundation: Open Graph and Twitter card metadata, a
-generated OG image and favicon built from the portfolio's own dark/accent
-visual system (`src/app/opengraph-image.tsx`, `src/app/icon.tsx`, no image
-generation dependency added), and a minimal Person JSON-LD block (name,
-email, GitHub/LinkedIn `sameAs`). `metadataBase` and canonical URLs are
-intentionally left unset — the production domain isn't known yet and will be
-configured in Iteration 8 (deployment). Hero copy was lightly polished to
-foreground current technical work rather than student status; no verified
-project or profile facts were changed.
-
-The final recruiter-facing CV PDF has since been added at
-`public/cv/ulises-fernandez-pertierra-cv.pdf` and is now integrated: a
-**Download CV** action appears in the Hero (View Projects / Download CV /
-GitHub) and in the Contact section (Email / LinkedIn / GitHub / Download CV),
-both sourced from a single `cvUrl` field in central `profile.ts` data. No
-DOCX is exposed publicly. The recruiter-facing contact/CV layer is now
-complete.
+The portfolio is deployed on Vercel and publicly live at the URL above
+(GitHub: [fernandezulises66-svg/personal-portfolio](https://github.com/fernandezulises66-svg/personal-portfolio),
+branch `main`). Iterations 1–7B established the visual system, five verified
+projects with detail pages and screenshots, real work/education background,
+a public recruiter contact layer (email, LinkedIn, GitHub), and CV
+integration (Download CV in Hero and Contact, sourced from a central
+`cvUrl` field). This iteration configures production-aware metadata now that
+the real deployment URL is known: `metadataBase` and a homepage/per-project
+canonical (`alternates.canonical`) using a single centralized `siteUrl`
+constant in `profile.ts`, a finalized Person JSON-LD block (adds `url`
+alongside the existing `name`/`email`/`sameAs`), and `sitemap.xml` /
+`robots.txt` routes covering the homepage and all 5 real project pages. No
+verified project or profile facts were changed. Final public smoke testing
+against the live deployment is in progress as part of this same pass.

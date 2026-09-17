@@ -20,6 +20,9 @@ export async function generateMetadata({
   return {
     title: `${project.title} | Ulises Fernandez Pertierra`,
     description: project.description,
+    alternates: {
+      canonical: `/projects/${project.slug}`,
+    },
   };
 }
 
