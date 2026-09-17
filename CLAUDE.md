@@ -90,3 +90,17 @@
   technical claims (module counts, architecture, data model, deployment,
   etc.); other sections (e.g. Experience) should stay concise and defer to
   the project page rather than restating or diverging from its details.
+- The public CV must be a PDF, never an editable DOCX. If only a DOCX exists,
+  do not convert it automatically or fabricate a PDF — report that the final
+  PDF asset is still required and leave any CV download action out entirely.
+- Deployment-specific URLs (metadataBase, canonical links, absolute
+  `openGraph`/`sameAs` URLs, etc.) must not be invented before the real
+  production domain is known. Leave them unset and document the deferral
+  rather than guessing a placeholder domain.
+- Recruiter-facing actions (Download CV, Live Demo, GitHub buttons, etc.)
+  must never point to an asset or URL that doesn't yet exist — omit the
+  action entirely rather than rendering something that will 404 or mislead.
+- Final SEO/social metadata (titles, descriptions, Open Graph, structured
+  data) must stay factual and consistent with the rest of the portfolio's
+  verified content — never keyword-stuffed or asserting unverified job
+  titles, employers, awards, or ratings.

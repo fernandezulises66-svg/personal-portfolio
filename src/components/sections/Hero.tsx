@@ -20,6 +20,16 @@ export default function Hero() {
         >
           View Projects
         </a>
+        {profile.cvUrl ? (
+          <a
+            href={profile.cvUrl}
+            download
+            aria-label="Download CV (PDF)"
+            className="rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
+          >
+            Download CV
+          </a>
+        ) : null}
         {profile.githubUrl ? (
           <a
             href={profile.githubUrl}

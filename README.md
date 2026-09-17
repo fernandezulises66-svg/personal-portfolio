@@ -33,8 +33,9 @@ npm run build  # Production build
 
 ## Project Structure
 
-- `src/app` — routes, root layout, and global styles, including the
-  `projects/[slug]` project-detail route
+- `src/app` — routes, root layout, global styles, and file-based metadata
+  (`icon.tsx`, `opengraph-image.tsx`), including the `projects/[slug]`
+  project-detail route
 - `src/components/layout` — navbar and footer
 - `src/components/sections` — homepage sections (hero, projects, about, experience, education, stack, contact)
 - `src/components/project` — project-detail page composition (architecture flow, screenshot gallery, action buttons)
@@ -47,16 +48,25 @@ lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 7A: Profile Alignment.**
+**Iteration 7B: Recruiter Layer, CV Integration, SEO, and Final UI Polish.**
 
-Iterations 1–6 established the visual system, five verified projects with
-detail pages and real screenshots, and real work/education background. This
-iteration aligns the portfolio with Ulises's current, verified professional
-profile: it adds his current role (Data & Systems Analyst at mooba) to
-Experience alongside the now-approved OLA Muebles and GPS role titles and
-periods, and adds public recruiter contact channels (LinkedIn and email,
-alongside the existing GitHub link) to the Contact section and footer. About,
-Hero, and the global tech stack were updated to reflect this current profile
-without restating project-specific technical details, which remain owned by
-each project's detail page. A CV download is intentionally not included yet
-— that's planned for Iteration 7B.
+Iterations 1–7A established the visual system, five verified projects with
+detail pages and screenshots, real work/education background, and a public
+recruiter contact layer (email, LinkedIn, GitHub). This iteration adds an
+SEO/social metadata foundation: Open Graph and Twitter card metadata, a
+generated OG image and favicon built from the portfolio's own dark/accent
+visual system (`src/app/opengraph-image.tsx`, `src/app/icon.tsx`, no image
+generation dependency added), and a minimal Person JSON-LD block (name,
+email, GitHub/LinkedIn `sameAs`). `metadataBase` and canonical URLs are
+intentionally left unset — the production domain isn't known yet and will be
+configured in Iteration 8 (deployment). Hero copy was lightly polished to
+foreground current technical work rather than student status; no verified
+project or profile facts were changed.
+
+The final recruiter-facing CV PDF has since been added at
+`public/cv/ulises-fernandez-pertierra-cv.pdf` and is now integrated: a
+**Download CV** action appears in the Hero (View Projects / Download CV /
+GitHub) and in the Contact section (Email / LinkedIn / GitHub / Download CV),
+both sourced from a single `cvUrl` field in central `profile.ts` data. No
+DOCX is exposed publicly. The recruiter-facing contact/CV layer is now
+complete.

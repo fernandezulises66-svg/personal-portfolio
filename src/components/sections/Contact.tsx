@@ -1,15 +1,32 @@
 import { profile } from "@/data/profile";
 
+interface ContactLink {
+  label: string;
+  href: string;
+  external: boolean;
+  download?: boolean;
+}
+
 export default function Contact() {
-  const links = [
+  const links: ContactLink[] = [
     profile.email
-      ? { label: "Email", href: `mailto:${profile.email}` }
+      ? { label: "Email", href: `mailto:${profile.email}`, external: false }
       : null,
     profile.linkedinUrl
-      ? { label: "LinkedIn", href: profile.linkedinUrl }
+      ? { label: "LinkedIn", href: profile.linkedinUrl, external: true }
       : null,
-    profile.githubUrl ? { label: "GitHub", href: profile.githubUrl } : null,
-  ].filter((link): link is { label: string; href: string } => link !== null);
+    profile.githubUrl
+      ? { label: "GitHub", href: profile.githubUrl, external: true }
+      : null,
+    profile.cvUrl
+      ? {
+          label: "Download CV",
+          href: profile.cvUrl,
+          external: false,
+          download: true,
+        }
+      : null,
+  ].filter((link): link is ContactLink => link !== null);
 
   return (
     <section
@@ -30,8 +47,12 @@ export default function Contact() {
               <a
                 key={link.label}
                 href={link.href}
-                target={link.label === "Email" ? undefined : "_blank"}
-                rel={link.label === "Email" ? undefined : "noreferrer"}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+                download={link.download}
+                aria-label={
+                  link.label === "Download CV" ? "Download CV (PDF)" : undefined
+                }
                 className="rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
               >
                 {link.label}
