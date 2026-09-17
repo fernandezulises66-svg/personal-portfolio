@@ -49,3 +49,17 @@
   choice, not a claim that non-featured projects are lower quality.
 - Do not publish a project (card or detail page) until its factual content
   and URLs have been verified.
+- For real client work, distinguish clearly between what Ulises actually
+  built (the website/software implementation) and the client's own
+  underlying business claims or services — don't present the client's
+  business capabilities as features Ulises engineered.
+- Non-AI projects (real-world software/web work) must not be forced into the
+  benchmark/evaluation-metric presentation pattern used for AI projects. Use
+  a status callout (e.g. "MVP" / "Active adoption") instead where a curated
+  benchmark doesn't apply.
+- Describe project lifecycle status accurately (e.g. "MVP in active
+  adoption") — never round up to "finished," "production-ready," or
+  "company-wide deployment" without confirmation.
+- Never expose a private or access-unverified repository URL as a public
+  recruiter-facing GitHub link. Leave `githubUrl` `null` until visibility is
+  confirmed.

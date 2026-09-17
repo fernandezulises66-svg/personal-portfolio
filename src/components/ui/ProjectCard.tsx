@@ -46,6 +46,15 @@ export default function ProjectCard({
             <p className="text-xs text-muted">{project.metric.label}</p>
           ) : null}
         </div>
+      ) : project.status ? (
+        <div className="mt-4 flex flex-col items-start gap-1">
+          <span className="rounded-full border border-accent/30 bg-accent-soft px-2.5 py-1 font-mono text-xs font-semibold uppercase tracking-wide text-accent">
+            {project.status.value}
+          </span>
+          {project.status.label ? (
+            <p className="text-xs text-muted">{project.status.label}</p>
+          ) : null}
+        </div>
       ) : null}
 
       {project.highlights && project.highlights.length > 0 ? (

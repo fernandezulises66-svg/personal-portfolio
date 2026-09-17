@@ -16,6 +16,15 @@ export default function ProjectGroup({
     return null;
   }
 
+  // Column count follows how many cards are actually in the group, rather
+  // than a fixed lg:grid-cols-3 — a single selected project stays a
+  // deliberately-sized card instead of stretching full width, and four
+  // featured cards form a balanced 2x2 grid instead of an awkward 3+1 row.
+  const gridClass =
+    projects.length === 1
+      ? "grid-cols-1 max-w-md"
+      : "grid-cols-1 md:grid-cols-2";
+
   return (
     <div className="mt-10">
       {title ? (
@@ -23,7 +32,7 @@ export default function ProjectGroup({
           {title}
         </h3>
       ) : null}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className={`grid gap-6 ${gridClass}`}>
         {projects.map((project, index) => (
           <ProjectCard
             key={project.slug}

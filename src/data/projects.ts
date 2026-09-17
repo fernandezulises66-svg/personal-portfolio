@@ -87,6 +87,163 @@ export const projects: readonly Project[] = [
     },
   },
   {
+    slug: "ola-muebles-erp",
+    title: "OLA Muebles ERP",
+    description:
+      "A full-stack ERP built around the operational needs of a furniture business, centralizing inventory, sales, purchasing, billing, finance, HR, reporting and internal workflows that were previously distributed across spreadsheets.",
+    category: "software",
+    tier: "featured",
+    tags: ["React", "Node.js", "Express", "MySQL", "MUI", "JWT"],
+    githubUrl: null,
+    demoUrl: null,
+    status: { value: "MVP", label: "Active adoption at OLA Muebles" },
+    highlights: [
+      "Full quote-to-sale workflow",
+      "Inventory + raw-material BOM tracking",
+      "Electronic invoicing / AFIP-ARCA integration",
+      "Role-based business operations",
+    ],
+    detail: {
+      overview:
+        "A full-stack ERP designed and developed end-to-end for OLA Muebles, a furniture business, covering the operational lifecycle from customer inquiry through electronic invoicing, with synchronized stock, material BOMs and financial reporting. Built with Node.js, Express, MySQL 8, React 18, MUI v5, Zustand, Axios and JWT authentication, with AI-assisted document processing via the Anthropic API, deployed with PM2 and Nginx.",
+      problem: {
+        summary:
+          "OLA Muebles previously operated with fragmented Excel spreadsheets, which created several operational pain points:",
+        points: [
+          "No centralized stock traceability",
+          "Disconnected business information across spreadsheets",
+          "No unified quote-to-sale workflow",
+          "No centralized invoicing flow",
+        ],
+      },
+      systemArchitecture: [
+        "Browser",
+        "React frontend (Vercel)",
+        "Express API (VPS, behind Nginx + PM2)",
+        "MySQL 8",
+      ],
+      modules: [
+        {
+          title: "Catalog & Inventory",
+          items: [
+            "Catalog",
+            "Finished products",
+            "Raw materials",
+            "BOM / material composition",
+          ],
+        },
+        {
+          title: "Sales & Purchasing",
+          items: [
+            "Customers",
+            "Suppliers",
+            "Sales",
+            "Purchases",
+            "Orders / quotes",
+            "Quote-to-sale conversion",
+            "Workflow states",
+          ],
+        },
+        {
+          title: "Invoicing",
+          items: [
+            "Issued invoices",
+            "Received invoices",
+            "PDF generation",
+            "AFIP / ARCA integration",
+          ],
+        },
+        {
+          title: "Finance",
+          items: ["Cash", "Bank", "Expenses", "E-Cheques"],
+        },
+        {
+          title: "HR",
+          items: ["Employees", "Payroll settlements", "Absences"],
+        },
+        {
+          title: "Operations",
+          items: [
+            "Reports (28 report views)",
+            "Users and roles",
+            "AI document/invoice reading",
+          ],
+        },
+      ],
+      dataModel: {
+        note: "MySQL 8 relational schema covering the full operational domain, including:",
+        entities: [
+          "productos",
+          "variantes_producto",
+          "insumos",
+          "ficha_tecnica",
+          "clientes",
+          "proveedores",
+          "ventas",
+          "detalle_ventas",
+          "compras",
+          "detalle_compras",
+          "presupuestos",
+          "presupuesto_items",
+          "comprobantes_afip",
+          "comprobantes_recibidos",
+          "cajas",
+          "movimientos_caja",
+          "egresos",
+          "empleados",
+          "liquidaciones",
+          "faltas_empleados",
+          "echeques",
+          "usuarios",
+          "roles",
+        ],
+      },
+      authorization: {
+        note: "JWT authentication with role-based access control. Access tokens last 24 hours with 7-day refresh tokens and automatic renewal. Roles include:",
+        roles: [
+          "administrador_sistema",
+          "dueño",
+          "administrador_general",
+          "vendedor",
+          "producción",
+          "contador",
+          "marketing",
+          "importaciones",
+          "cliente_web",
+        ],
+      },
+      businessWorkflow: {
+        steps: [
+          "Customer inquiry",
+          "Quote",
+          "Quote approval / conversion",
+          "Sale",
+          "Inventory synchronization",
+          "Invoice",
+          "Cash / bank movement",
+          "Reporting",
+        ],
+        note: "A simplified representation of the quote-to-sale lifecycle; not every step is necessarily fully automated end-to-end.",
+        materialFlow: ["Product", "Product variant", "BOM", "Raw materials"],
+        materialFlowNote:
+          "Conceptual relationship between catalog products, their variants, and the raw materials tracked through each BOM.",
+      },
+      aiFeature:
+        "AI-assisted extraction of information from invoices and documents using the Anthropic API.",
+      deploymentNote:
+        "The Express API is hosted on a Hostinger VPS behind Nginx with PM2 process management. The React frontend is deployed on Vercel and communicates with the API over HTTPS.",
+      adoption:
+        "The ERP is an MVP in active adoption at OLA Muebles. Employees currently use modules including production, HR, and quotes/budgets.",
+      limitations: [
+        "Active development — not a finished or production-hardened product.",
+        "Partial organizational adoption; not every legacy/manual workflow has necessarily migrated yet.",
+        "No formal production-grade security audit or penetration test has been performed.",
+        "Screenshots have not yet been added to the portfolio.",
+        "Repository visibility/access has not been confirmed, so no GitHub link is shown.",
+      ],
+    },
+  },
+  {
     slug: "rag-knowledge-agent",
     title: "RAG Knowledge Agent",
     description:
@@ -220,6 +377,80 @@ export const projects: readonly Project[] = [
         "Deliberately read-only by design.",
         "Not connected to a production database.",
         "LLM-generated SQL can vary before safety validation catches unsafe queries.",
+      ],
+    },
+  },
+  {
+    slug: "gpsolutions-website",
+    title: "GPSolutions Website",
+    description:
+      "A responsive multi-page corporate website built from scratch for a real technology and smart-city company, presenting its services, solutions and institutional information.",
+    category: "web",
+    tier: "selected",
+    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    githubUrl: "https://github.com/fernandezulises66-svg/gpsolutions-landing",
+    demoUrl: "https://www.gps-ar.com/",
+    highlights: [
+      "Built from scratch",
+      "Responsive multi-page layout",
+      "Mobile navigation",
+      "Corporate service/solution presentation",
+    ],
+    detail: {
+      overview:
+        "A multi-page corporate website built from scratch with HTML5, CSS3 and vanilla JavaScript for GPSolutions, a real Argentine technology and smart-city company, presenting its services, solutions and institutional information.",
+      context:
+        "GPSolutions presents itself as a technology and smart-city business, covering areas such as Smart City / Safe City systems, technology integration, consulting, and system implementation. Ulises developed the website presenting these services — he did not necessarily implement the underlying Smart City systems described on the site.",
+      siteStructure: [
+        {
+          title: "Home",
+          items: [
+            "Hero section",
+            "Corporate introduction",
+            "Service CTA",
+            "GPSolutions / Mooba alliance section",
+          ],
+        },
+        {
+          title: "Services",
+          items: ["Multiple service cards"],
+        },
+        {
+          title: "Solutions",
+          items: ["Multiple solution cards"],
+        },
+        {
+          title: "Contact",
+          items: ["User-facing contact form"],
+        },
+      ],
+      implementation: [
+        "Custom cards and layout across all pages",
+        "CSS animations and transitions",
+        "Desktop navigation with mobile hamburger navigation",
+        "Lazy-loaded images",
+      ],
+      responsiveDesign: [
+        "Responsive layout with a mobile breakpoint around 768px",
+        "Hero section stacks vertically on mobile",
+        "Card grids collapse to a single column on mobile",
+        "Custom mobile navigation with a sliding menu",
+      ],
+      interaction: [
+        "Hamburger menu appears on mobile and slides the nav in/out",
+        "Menu closes on link click or on clicking outside the menu",
+        "Interactive contact form interface (client-side only — see limitations)",
+      ],
+      seo: [
+        "Page title and meta description",
+        "Meta keywords",
+        "Basic SEO metadata and structured-data foundation (Organization JSON-LD)",
+      ],
+      limitations: [
+        "Static frontend with no backend.",
+        "The contact form is simulated client-side — it does not send real email.",
+        "Depends on external image/CDN resources.",
+        "No automated test suite currently known.",
       ],
     },
   },

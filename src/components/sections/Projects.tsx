@@ -3,15 +3,11 @@ import ProjectGroup from "@/components/ui/ProjectGroup";
 import { projects } from "@/data/projects";
 
 export default function Projects() {
-  // Grouped by tier/category so a future "Selected Software Projects" group
-  // (e.g. OLA ERP, GPSolutions) can be added later without redesigning the
-  // Project type or ProjectCard. Empty groups render nothing.
-  const featuredAiData = projects.filter(
-    (project) => project.tier === "featured" && project.category === "ai-data",
-  );
-  const selectedSoftware = projects.filter(
-    (project) => project.tier === "selected" && project.category === "software",
-  );
+  // Tier drives grouping, independent of category — a featured project can
+  // come from any category (ai-data, software, or web). Empty groups render
+  // nothing.
+  const featured = projects.filter((project) => project.tier === "featured");
+  const selected = projects.filter((project) => project.tier === "selected");
 
   return (
     <section
@@ -21,10 +17,10 @@ export default function Projects() {
       <SectionHeading
         eyebrow="Featured Projects"
         title="Selected work"
-        description="Selected systems focused on AI agents, data workflows, retrieval, and safe automation."
+        description="Selected systems spanning AI agents, data workflows, full-stack business software, and web development."
       />
-      <ProjectGroup projects={featuredAiData} emphasizeFirst />
-      <ProjectGroup title="Selected Software Projects" projects={selectedSoftware} />
+      <ProjectGroup projects={featured} emphasizeFirst />
+      <ProjectGroup title="Selected Software Projects" projects={selected} />
       <p className="mt-6 text-xs text-muted">
         Evaluation results refer to curated project-specific benchmarks, not
         general model accuracy.

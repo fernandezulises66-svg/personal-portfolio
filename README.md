@@ -38,7 +38,7 @@ npm run build  # Production build
 - `src/components/layout` — navbar and footer
 - `src/components/sections` — homepage sections (hero, projects, about, experience, education, stack, contact)
 - `src/components/project` — project-detail page composition (architecture flow, action buttons)
-- `src/components/ui` — small reusable UI pieces (project card, project group, detail section, bullet list, experience item, section heading)
+- `src/components/ui` — small reusable UI pieces (project card, project group, detail section, bullet list, grouped list, tag list, experience item, section heading)
 - `src/data` — typed content (profile, projects, experience, education, tech stack)
 - `src/types` — shared TypeScript types
 
@@ -47,16 +47,19 @@ lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 4: Project Detail System and Portfolio Expansion Architecture.**
+**Iteration 5: Portfolio Expansion — OLA Muebles ERP + GPSolutions.**
 
-Iterations 1–3 established the visual system, real profile/background
-content, and three verified featured AI/data projects. This iteration adds
-real project detail pages (`/projects/[slug]`) for those three projects,
-built from a shared, data-driven detail-page template. The project data
-model now includes a category/tier taxonomy (`ai-data` / `software` / `web`,
-`featured` / `selected`) and the homepage Projects section is structured to
-support additional project groups — such as future selected software/web
-projects — without redesigning the Project type or components. No
-software/web project content has been added yet; that will come in a later
-iteration once verified. LinkedIn/email contact links and a CV download are
-still not implemented.
+Iterations 1–4 established the visual system, real profile/background
+content, three verified featured AI/data projects, and a shared, data-driven
+project detail-page template (`/projects/[slug]`). This iteration expands
+the portfolio beyond AI-agent projects: it adds OLA Muebles ERP, a
+full-stack business system (`category: "software"`), as a featured project,
+and GPSolutions Website, a real client website (`category: "web"`), as a
+selected software project. The portfolio now demonstrates AI/data systems,
+full-stack business software, and real client web development side by side.
+The `Project` type was extended to support a status callout (e.g. "MVP")
+alongside the existing benchmark-metric callout, so non-AI projects aren't
+forced into an evaluation-metric presentation, and homepage featured/selected
+grouping now keys off `tier` alone rather than assuming featured implies
+`ai-data`. LinkedIn/email contact links and a CV download are still not
+implemented.
