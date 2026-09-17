@@ -1,5 +1,5 @@
 import SectionHeading from "@/components/ui/SectionHeading";
-import { education } from "@/data/education";
+import { education, languages } from "@/data/education";
 
 export default function Education() {
   return (
@@ -14,9 +14,16 @@ export default function Education() {
             key={item.institution}
             className="border-l-2 border-border pl-4"
           >
-            <p className="text-sm font-semibold text-foreground">
-              {item.institution}
-            </p>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <p className="text-sm font-semibold text-foreground">
+                {item.institution}
+              </p>
+              {item.period ? (
+                <span className="font-mono text-xs text-muted">
+                  {item.period}
+                </span>
+              ) : null}
+            </div>
             <p className="mt-1 text-sm text-muted">{item.program}</p>
             {item.faculty ? (
               <p className="text-sm text-muted">{item.faculty}</p>
@@ -29,6 +36,12 @@ export default function Education() {
           </li>
         ))}
       </ul>
+      {languages.length > 0 ? (
+        <p className="mt-8 text-sm text-muted">
+          <span className="font-medium text-foreground">Languages:</span>{" "}
+          {languages.join(", ")}
+        </p>
+      ) : null}
     </section>
   );
 }

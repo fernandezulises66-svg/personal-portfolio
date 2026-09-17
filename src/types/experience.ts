@@ -1,7 +1,8 @@
 export interface Experience {
   company: string;
-  // Descriptive portfolio summary of responsibilities, not an official title
-  // unless stated otherwise where this is used.
+  // The verified job title for entries where one has been confirmed; falls
+  // back to a descriptive portfolio summary only when no formal title has
+  // been verified for that entry (see CLAUDE.md).
   roleLabel?: string;
   summary: string;
   bullets: readonly string[];

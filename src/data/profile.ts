@@ -10,17 +10,18 @@ export interface Profile {
   location?: string;
 }
 
-// linkedinUrl and email stay null until explicitly provided — the UI omits
-// them rather than rendering placeholder or broken links.
+// githubUrl, linkedinUrl, and email are explicitly approved for public
+// portfolio use. Phone number is intentionally excluded — not approved for
+// public display, even though it appears in the source CV.
 export const profile: Profile = {
   name: "Ulises Fernandez Pertierra",
   shortName: "Ulises",
   role: "AI / Data / Software",
   headline: "Building AI agents, data systems and practical software.",
   shortBio:
-    "I'm a programming student focused on building practical AI and data-oriented systems — agents, SQL, RAG, workflow automation, and human-in-the-loop tools. I also study Law at UNLP alongside Programming at ISTEA.",
+    "I work on practical AI and data-oriented systems — agents, SQL, RAG, workflow automation, and full-stack software — alongside studies in Programming at ISTEA and Law at UNLP.",
   githubUrl: "https://github.com/fernandezulises66-svg",
-  linkedinUrl: null,
-  email: null,
+  linkedinUrl: "https://www.linkedin.com/in/ulises-fernández-a51731200",
+  email: "fernandezulises66@gmail.com",
   location: "Buenos Aires, Argentina",
 };

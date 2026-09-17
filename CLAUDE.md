@@ -75,3 +75,18 @@
   it into compliance.
 - Do not present fake UI mockups, placeholder images, or device frames as
   project evidence.
+- Phone numbers and other private contact details present in source
+  materials (e.g. a CV) must not be published in the portfolio unless the
+  user explicitly approves publishing that specific detail — appearing in a
+  source document is not itself approval.
+- Current role/title/company/project claims must remain consistent with the
+  user's verified CV/profile information; don't let portfolio wording drift
+  from what's been explicitly confirmed.
+- Private employer projects (e.g. work built as part of a job) must not
+  become public portfolio projects — with a card, detail route, screenshots,
+  or repo/demo links — without the user's explicit approval to present that
+  specific work publicly.
+- Project detail pages remain the authoritative source for project-specific
+  technical claims (module counts, architecture, data model, deployment,
+  etc.); other sections (e.g. Experience) should stay concise and defer to
+  the project page rather than restating or diverging from its details.

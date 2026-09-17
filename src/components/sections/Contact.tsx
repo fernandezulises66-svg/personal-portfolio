@@ -21,8 +21,8 @@ export default function Contact() {
           Get in touch
         </h2>
         <p className="mx-auto mt-3 max-w-md text-base text-muted">
-          Interested in AI, data or software opportunities? Explore my work
-          or reach out through GitHub.
+          Interested in AI, data or software work? You can reach me by
+          email, LinkedIn, or explore my work on GitHub.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           {links.length > 0 ? (

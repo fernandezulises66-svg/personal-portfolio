@@ -8,11 +8,11 @@ export default function About() {
     >
       <SectionHeading eyebrow="About" title="Background" />
       <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
-        I study Programming at ISTEA and Law at UNLP. My technical focus has
-        increasingly moved toward AI, data, and software — I enjoy building
-        systems where LLMs handle interpretation while deterministic code
-        controls data, policies, and actions. The projects in this portfolio
-        reflect that direction.
+        I&apos;m currently a Data & Systems Analyst at mooba, while studying
+        Programming at ISTEA and Law at UNLP. My technical focus is on AI,
+        data, and software — I enjoy building systems where LLMs handle
+        interpretation while deterministic code controls data, policies, and
+        actions. The projects in this portfolio reflect that direction.
       </p>
     </section>
   );

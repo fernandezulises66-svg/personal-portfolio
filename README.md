@@ -47,16 +47,16 @@ lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 6: Visual Evidence and Project Screenshots.**
+**Iteration 7A: Profile Alignment.**
 
-Iterations 1–5 established the visual system, real profile/background
-content, five verified projects (AI/data, full-stack business software, and
-real client web work), and a shared, data-driven project detail-page
-template (`/projects/[slug]`). This iteration adds real project
-screenshots/visual evidence to each of the five project detail pages, backed
-by an optional `screenshots` field on `ProjectDetail` and a small
-`ProjectGallery` component built on Next.js Image. Only screenshots that
-actually exist in the repository and passed a privacy/content review were
-used — no screenshots were fabricated. The homepage cards remain text-only
-by design; screenshots live on the detail pages only. LinkedIn/email contact
-links and a CV download are still not implemented.
+Iterations 1–6 established the visual system, five verified projects with
+detail pages and real screenshots, and real work/education background. This
+iteration aligns the portfolio with Ulises's current, verified professional
+profile: it adds his current role (Data & Systems Analyst at mooba) to
+Experience alongside the now-approved OLA Muebles and GPS role titles and
+periods, and adds public recruiter contact channels (LinkedIn and email,
+alongside the existing GitHub link) to the Contact section and footer. About,
+Hero, and the global tech stack were updated to reflect this current profile
+without restating project-specific technical details, which remain owned by
+each project's detail page. A CV download is intentionally not included yet
+— that's planned for Iteration 7B.
