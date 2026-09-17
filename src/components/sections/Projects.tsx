@@ -11,13 +11,22 @@ export default function Projects() {
       <SectionHeading
         eyebrow="Featured Projects"
         title="Selected work"
-        description="A selection of AI, data, and software projects. Full write-ups are being added incrementally."
+        description="Selected systems focused on AI agents, data workflows, retrieval, and safe automation."
       />
       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
-          <ProjectCard key={project.slug} project={project} index={index} />
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            index={index}
+            emphasize={index === 0}
+          />
         ))}
       </div>
+      <p className="mt-6 text-xs text-muted">
+        Evaluation results refer to curated project-specific benchmarks, not
+        general model accuracy.
+      </p>
     </section>
   );
 }

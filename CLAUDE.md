@@ -36,3 +36,9 @@
 - Project claims must remain grounded in the actual project repositories;
   don't describe architecture, results, or scope beyond what those repos
   demonstrate.
+- Project URLs (repo, live demo) and metrics must be verified against the
+  actual project before publication — never guessed or pattern-matched from
+  a project's name.
+- Curated evaluation results (e.g. "20/20 curated E2E benchmark") must not be
+  reframed or worded as general model accuracy claims.
+- Do not create fake project screenshots, thumbnails, or metrics.

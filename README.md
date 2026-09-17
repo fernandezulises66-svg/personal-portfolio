@@ -45,11 +45,12 @@ lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 2: Real Profile, Experience, Education, and Skills.**
+**Iteration 3: Featured Projects.**
 
-Iteration 1 established the tech stack, visual/design system, and homepage
-skeleton. This iteration replaces placeholder personal content with real
-profile, biography, work experience, education, and a categorized tech
-stack, plus the real GitHub profile link. Project detail pages, LinkedIn/
-email contact links, and a CV download are not implemented yet and will be
-added in later iterations.
+Iterations 1–2 established the visual system, homepage skeleton, and real
+profile/background content. This iteration replaces the placeholder project
+cards with real, verified data for the three featured projects — actual
+GitHub repository links, live Streamlit demo links, and curated
+project-specific evaluation metrics. Project detail pages, LinkedIn/email
+contact links, and a CV download are not implemented yet and will be added
+in later iterations.
