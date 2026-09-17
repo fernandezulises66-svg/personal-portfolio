@@ -26,3 +26,13 @@
   isn't backed by what's actually built and documented.
 - Work in small, incremental iterations with focused commits rather than
   large speculative builds.
+- Never invent education or work experience dates. If a date isn't confirmed,
+  omit it rather than approximate it.
+- Descriptive portfolio role labels (e.g. "Technology & Data Operations")
+  must be presented as descriptive summaries, not official HR job titles,
+  unless an actual formal title has been confirmed.
+- Personal contact details (email, LinkedIn, phone, etc.) are added only when
+  explicitly provided by the user — never inferred or guessed.
+- Project claims must remain grounded in the actual project repositories;
+  don't describe architecture, results, or scope beyond what those repos
+  demonstrate.

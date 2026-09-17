@@ -35,20 +35,21 @@ npm run build  # Production build
 
 - `src/app` — routes, root layout, and global styles
 - `src/components/layout` — navbar and footer
-- `src/components/sections` — homepage sections (hero, projects, about, stack, contact)
-- `src/components/ui` — small reusable UI pieces (project card, section heading)
-- `src/data` — typed content (profile, projects, tech stack)
+- `src/components/sections` — homepage sections (hero, projects, about, experience, education, stack, contact)
+- `src/components/ui` — small reusable UI pieces (project card, experience item, section heading)
+- `src/data` — typed content (profile, projects, experience, education, tech stack)
 - `src/types` — shared TypeScript types
 
-Content (profile info, project details, tech stack) lives in `src/data` and
-is kept separate from presentation components.
+Content (profile info, project details, experience, education, tech stack)
+lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 1: Foundation, Visual System, and Home Skeleton.**
+**Iteration 2: Real Profile, Experience, Education, and Skills.**
 
-This iteration establishes the tech stack, visual/design system, and a
-homepage skeleton (navbar, hero, featured projects placeholder, about
-placeholder, tech stack, contact CTA, footer). Project detail pages, full
-biography, and real contact/profile links are not implemented yet and will
-be added in later iterations.
+Iteration 1 established the tech stack, visual/design system, and homepage
+skeleton. This iteration replaces placeholder personal content with real
+profile, biography, work experience, education, and a categorized tech
+stack, plus the real GitHub profile link. Project detail pages, LinkedIn/
+email contact links, and a CV download are not implemented yet and will be
+added in later iterations.

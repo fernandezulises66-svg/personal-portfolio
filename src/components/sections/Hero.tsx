@@ -8,10 +8,10 @@ export default function Hero() {
         {profile.name}
       </h1>
       <p className="mt-4 max-w-2xl text-xl text-foreground/90">
-        {profile.tagline}
+        {profile.headline}
       </p>
       <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-        {profile.summary}
+        {profile.shortBio}
       </p>
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <a
@@ -20,9 +20,9 @@ export default function Hero() {
         >
           View Projects
         </a>
-        {profile.social.githubUrl ? (
+        {profile.githubUrl ? (
           <a
-            href={profile.social.githubUrl}
+            href={profile.githubUrl}
             target="_blank"
             rel="noreferrer"
             className="rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"

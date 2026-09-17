@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Ulises Fernandez Pertierra | AI & Data Portfolio",
   description:
-    "Portfolio of Ulises Fernandez Pertierra, showcasing AI agent, data, and software projects.",
+    "Portfolio of Ulises Fernandez Pertierra, focused on AI agents, data systems, workflow automation, and software projects.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

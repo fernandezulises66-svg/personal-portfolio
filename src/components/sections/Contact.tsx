@@ -2,15 +2,13 @@ import { profile } from "@/data/profile";
 
 export default function Contact() {
   const links = [
-    profile.social.email
-      ? { label: "Email", href: `mailto:${profile.social.email}` }
+    profile.email
+      ? { label: "Email", href: `mailto:${profile.email}` }
       : null,
-    profile.social.linkedinUrl
-      ? { label: "LinkedIn", href: profile.social.linkedinUrl }
+    profile.linkedinUrl
+      ? { label: "LinkedIn", href: profile.linkedinUrl }
       : null,
-    profile.social.githubUrl
-      ? { label: "GitHub", href: profile.social.githubUrl }
-      : null,
+    profile.githubUrl ? { label: "GitHub", href: profile.githubUrl } : null,
   ].filter((link): link is { label: string; href: string } => link !== null);
 
   return (
@@ -20,10 +18,11 @@ export default function Contact() {
     >
       <div className="rounded-xl border border-border bg-surface px-6 py-14 text-center sm:px-12">
         <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-          Let&apos;s build something useful.
+          Get in touch
         </h2>
         <p className="mx-auto mt-3 max-w-md text-base text-muted">
-          Interested in working together or want to talk about a project?
+          Interested in AI, data or software opportunities? Explore my work
+          or reach out through GitHub.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           {links.length > 0 ? (

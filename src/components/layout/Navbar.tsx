@@ -33,10 +33,10 @@ export default function Navbar() {
               </a>
             </li>
           ))}
-          {profile.social.githubUrl ? (
+          {profile.githubUrl ? (
             <li>
               <a
-                href={profile.social.githubUrl}
+                href={profile.githubUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="text-sm text-muted transition-colors hover:text-foreground"
@@ -65,10 +65,10 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
-            {profile.social.githubUrl ? (
+            {profile.githubUrl ? (
               <li>
                 <a
-                  href={profile.social.githubUrl}
+                  href={profile.githubUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="block rounded-md px-3 py-2 text-sm text-muted hover:bg-surface-hover hover:text-foreground"
