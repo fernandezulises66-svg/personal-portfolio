@@ -6,6 +6,7 @@ import BulletList from "@/components/ui/BulletList";
 import GroupedList from "@/components/ui/GroupedList";
 import TagList from "@/components/ui/TagList";
 import ArchitectureFlow from "@/components/project/ArchitectureFlow";
+import ProjectGallery from "@/components/project/ProjectGallery";
 import ProjectActions from "@/components/project/ProjectActions";
 
 interface ProjectDetailViewProps {
@@ -224,6 +225,12 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
       {detail?.safety && detail.safety.length > 0 ? (
         <DetailSection title="Safety / Guardrails">
           <BulletList items={detail.safety} />
+        </DetailSection>
+      ) : null}
+
+      {detail?.screenshots && detail.screenshots.length > 0 ? (
+        <DetailSection title="Interface / Demo">
+          <ProjectGallery screenshots={detail.screenshots} />
         </DetailSection>
       ) : null}
 

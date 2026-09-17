@@ -63,3 +63,15 @@
 - Never expose a private or access-unverified repository URL as a public
   recruiter-facing GitHub link. Leave `githubUrl` `null` until visibility is
   confirmed.
+- Screenshots must be real project assets that already exist in the repo
+  (`public/projects/`) — never generate, mock, or hotlink an image as project
+  evidence. Omit the screenshots section entirely if no real asset exists.
+- Screenshots of real-business software (e.g. OLA ERP) require a privacy
+  review before use, at the same standard as any other real-business fact in
+  this portfolio.
+- Screenshots must not expose credentials, tokens, PII, confidential
+  financial figures, or other internal operational secrets. Reject and
+  document any screenshot that fails this check instead of cropping/editing
+  it into compliance.
+- Do not present fake UI mockups, placeholder images, or device frames as
+  project evidence.

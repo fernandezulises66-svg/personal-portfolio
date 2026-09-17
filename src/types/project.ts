@@ -54,6 +54,15 @@ export interface BusinessWorkflow {
   materialFlowNote?: string;
 }
 
+// A real screenshot committed to the repo (public/projects/**). `src` is a
+// local path only — never a remote/hotlinked URL. Only add entries for
+// files that actually exist and have been reviewed for sensitive content.
+export interface ProjectScreenshot {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 // Presentation-independent project-detail content. Every field is optional —
 // the detail page only renders the sections a given project actually has.
 // Fields below aren't all AI-project-shaped: some (problem, systemArchitecture,
@@ -83,6 +92,7 @@ export interface ProjectDetail {
   safety?: readonly string[];
   deploymentNote?: string;
   adoption?: string;
+  screenshots?: readonly ProjectScreenshot[];
   evaluation?: readonly EvaluationGroup[];
   evaluationNote?: string;
   limitations?: readonly string[];

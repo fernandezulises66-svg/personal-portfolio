@@ -37,7 +37,7 @@ npm run build  # Production build
   `projects/[slug]` project-detail route
 - `src/components/layout` — navbar and footer
 - `src/components/sections` — homepage sections (hero, projects, about, experience, education, stack, contact)
-- `src/components/project` — project-detail page composition (architecture flow, action buttons)
+- `src/components/project` — project-detail page composition (architecture flow, screenshot gallery, action buttons)
 - `src/components/ui` — small reusable UI pieces (project card, project group, detail section, bullet list, grouped list, tag list, experience item, section heading)
 - `src/data` — typed content (profile, projects, experience, education, tech stack)
 - `src/types` — shared TypeScript types
@@ -47,19 +47,16 @@ lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 5: Portfolio Expansion — OLA Muebles ERP + GPSolutions.**
+**Iteration 6: Visual Evidence and Project Screenshots.**
 
-Iterations 1–4 established the visual system, real profile/background
-content, three verified featured AI/data projects, and a shared, data-driven
-project detail-page template (`/projects/[slug]`). This iteration expands
-the portfolio beyond AI-agent projects: it adds OLA Muebles ERP, a
-full-stack business system (`category: "software"`), as a featured project,
-and GPSolutions Website, a real client website (`category: "web"`), as a
-selected software project. The portfolio now demonstrates AI/data systems,
-full-stack business software, and real client web development side by side.
-The `Project` type was extended to support a status callout (e.g. "MVP")
-alongside the existing benchmark-metric callout, so non-AI projects aren't
-forced into an evaluation-metric presentation, and homepage featured/selected
-grouping now keys off `tier` alone rather than assuming featured implies
-`ai-data`. LinkedIn/email contact links and a CV download are still not
-implemented.
+Iterations 1–5 established the visual system, real profile/background
+content, five verified projects (AI/data, full-stack business software, and
+real client web work), and a shared, data-driven project detail-page
+template (`/projects/[slug]`). This iteration adds real project
+screenshots/visual evidence to each of the five project detail pages, backed
+by an optional `screenshots` field on `ProjectDetail` and a small
+`ProjectGallery` component built on Next.js Image. Only screenshots that
+actually exist in the repository and passed a privacy/content review were
+used — no screenshots were fabricated. The homepage cards remain text-only
+by design; screenshots live on the detail pages only. LinkedIn/email contact
+links and a CV download are still not implemented.

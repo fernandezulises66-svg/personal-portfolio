@@ -57,6 +57,20 @@ export const projects: readonly Project[] = [
         "Operational actions are simulated and in-memory, not connected to real systems.",
         "Public UI error messages are safe and do not leak internal details.",
       ],
+      screenshots: [
+        {
+          src: "/projects/customer-operations/approval-pending.png",
+          alt: "Pending human approval card for a simulated refund, showing approve/reject actions and collapsible workflow-detail and audit-log sections",
+          caption:
+            "Human-in-the-loop approval required before a simulated refund action can execute.",
+        },
+        {
+          src: "/projects/customer-operations/approval-completed.png",
+          alt: "Case intake form with a synthetic customer refund request and the resulting simulated approval confirmation message",
+          caption:
+            "Case intake for a synthetic customer request, ending in a simulated refund confirmation response.",
+        },
+      ],
       evaluation: [
         {
           title: "Curated E2E Benchmark — 20 cases (latest reviewed run)",
@@ -230,6 +244,20 @@ export const projects: readonly Project[] = [
       },
       aiFeature:
         "AI-assisted extraction of information from invoices and documents using the Anthropic API.",
+      screenshots: [
+        {
+          src: "/projects/ola-erp/dashboard.png",
+          alt: "OLA Muebles ERP dashboard showing the module sidebar (Pedidos, Clientes, Catálogo, Stock, Proveedores, Compras, Banco, Facturación, Caja, Egresos) and operational summary panels",
+          caption:
+            "Dashboard view showing the system's module sidebar and operational summary panels.",
+        },
+        {
+          src: "/projects/ola-erp/catalogo.png",
+          alt: "Product catalog table listing furniture items with category, sale price, and origin, alongside an AI-assisted document-reading import action",
+          caption:
+            "Catalog and product-management interface used to centralize furniture stock and pricing information.",
+        },
+      ],
       deploymentNote:
         "The Express API is hosted on a Hostinger VPS behind Nginx with PM2 process management. The React frontend is deployed on Vercel and communicates with the API over HTTPS.",
       adoption:
@@ -285,6 +313,20 @@ export const projects: readonly Project[] = [
         "OpenAI text-embedding-3-small embeddings at 1536 dimensions.",
         "Cosine similarity retrieval with retrieval observability.",
         "Spanish-first Streamlit interface.",
+      ],
+      screenshots: [
+        {
+          src: "/projects/rag-knowledge-agent/rag-supported-answer.png",
+          alt: "Grounded answer about Nubira's accepted payment methods, with the response citing the specific source document it was retrieved from",
+          caption:
+            "Grounded answer with a citation mapped to the specific knowledge-base document used as evidence.",
+        },
+        {
+          src: "/projects/rag-knowledge-agent/rag-unsupported-answer.png",
+          alt: "Assistant response stating it found insufficient information in the documentation to answer an out-of-scope question",
+          caption:
+            "Explicit insufficient-information response when a question falls outside the retrieved evidence, instead of a forced answer.",
+        },
       ],
       evaluation: [
         {
@@ -362,6 +404,20 @@ export const projects: readonly Project[] = [
         "SELECT/WITH-only query validation before execution.",
         "SQLite read-only connection / query_only behavior.",
         "SQLite authorizer blocks writes and other unsafe operations.",
+      ],
+      screenshots: [
+        {
+          src: "/projects/sql-data-agent/streamlit-demo.png",
+          alt: "Natural-language business question about top-selling products, answered with a ranked list of results and revenue figures from the synthetic e-commerce dataset",
+          caption:
+            "Natural-language question resolved into a ranked business insight over the synthetic e-commerce dataset.",
+        },
+        {
+          src: "/projects/sql-data-agent/sql-observability.png",
+          alt: "Expandable panel showing the generated read-only SQL query, its joins, and row-count metadata behind the answer",
+          caption:
+            "Generated SQL query and row-count metadata surfaced for tool-call observability.",
+        },
       ],
       evaluation: [
         {
@@ -445,6 +501,18 @@ export const projects: readonly Project[] = [
         "Page title and meta description",
         "Meta keywords",
         "Basic SEO metadata and structured-data foundation (Organization JSON-LD)",
+      ],
+      screenshots: [
+        {
+          src: "/projects/gpsolutions/home.png",
+          alt: "GPSolutions homepage hero section with the 'Diseñamos ciudades inteligentes' headline, company introduction, and top navigation",
+          caption: "Responsive corporate homepage built from scratch for GPSolutions.",
+        },
+        {
+          src: "/projects/gpsolutions/services.png",
+          alt: "GPSolutions services page displaying three custom service cards for smart-city systems, consulting, and technology provisioning",
+          caption: "Services presentation using the custom multi-page interface.",
+        },
       ],
       limitations: [
         "Static frontend with no backend.",
