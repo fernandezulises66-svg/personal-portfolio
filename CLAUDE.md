@@ -42,3 +42,10 @@
 - Curated evaluation results (e.g. "20/20 curated E2E benchmark") must not be
   reframed or worded as general model accuracy claims.
 - Do not create fake project screenshots, thumbnails, or metrics.
+- The portfolio contains multiple project categories (`ai-data`, `software`,
+  `web`). AI/data projects and traditional software/web projects should
+  coexist — don't artificially force every project into an AI narrative.
+- Featured status (`tier: "featured"` vs `"selected"`) is a presentation
+  choice, not a claim that non-featured projects are lower quality.
+- Do not publish a project (card or detail page) until its factual content
+  and URLs have been verified.

@@ -1,8 +1,18 @@
 import SectionHeading from "@/components/ui/SectionHeading";
-import ProjectCard from "@/components/ui/ProjectCard";
+import ProjectGroup from "@/components/ui/ProjectGroup";
 import { projects } from "@/data/projects";
 
 export default function Projects() {
+  // Grouped by tier/category so a future "Selected Software Projects" group
+  // (e.g. OLA ERP, GPSolutions) can be added later without redesigning the
+  // Project type or ProjectCard. Empty groups render nothing.
+  const featuredAiData = projects.filter(
+    (project) => project.tier === "featured" && project.category === "ai-data",
+  );
+  const selectedSoftware = projects.filter(
+    (project) => project.tier === "selected" && project.category === "software",
+  );
+
   return (
     <section
       id="projects"
@@ -13,16 +23,8 @@ export default function Projects() {
         title="Selected work"
         description="Selected systems focused on AI agents, data workflows, retrieval, and safe automation."
       />
-      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={project.slug}
-            project={project}
-            index={index}
-            emphasize={index === 0}
-          />
-        ))}
-      </div>
+      <ProjectGroup projects={featuredAiData} emphasizeFirst />
+      <ProjectGroup title="Selected Software Projects" projects={selectedSoftware} />
       <p className="mt-6 text-xs text-muted">
         Evaluation results refer to curated project-specific benchmarks, not
         general model accuracy.

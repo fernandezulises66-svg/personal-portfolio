@@ -33,10 +33,12 @@ npm run build  # Production build
 
 ## Project Structure
 
-- `src/app` — routes, root layout, and global styles
+- `src/app` — routes, root layout, and global styles, including the
+  `projects/[slug]` project-detail route
 - `src/components/layout` — navbar and footer
 - `src/components/sections` — homepage sections (hero, projects, about, experience, education, stack, contact)
-- `src/components/ui` — small reusable UI pieces (project card, experience item, section heading)
+- `src/components/project` — project-detail page composition (architecture flow, action buttons)
+- `src/components/ui` — small reusable UI pieces (project card, project group, detail section, bullet list, experience item, section heading)
 - `src/data` — typed content (profile, projects, experience, education, tech stack)
 - `src/types` — shared TypeScript types
 
@@ -45,12 +47,16 @@ lives in `src/data` and is kept separate from presentation components.
 
 ## Current Status
 
-**Iteration 3: Featured Projects.**
+**Iteration 4: Project Detail System and Portfolio Expansion Architecture.**
 
-Iterations 1–2 established the visual system, homepage skeleton, and real
-profile/background content. This iteration replaces the placeholder project
-cards with real, verified data for the three featured projects — actual
-GitHub repository links, live Streamlit demo links, and curated
-project-specific evaluation metrics. Project detail pages, LinkedIn/email
-contact links, and a CV download are not implemented yet and will be added
-in later iterations.
+Iterations 1–3 established the visual system, real profile/background
+content, and three verified featured AI/data projects. This iteration adds
+real project detail pages (`/projects/[slug]`) for those three projects,
+built from a shared, data-driven detail-page template. The project data
+model now includes a category/tier taxonomy (`ai-data` / `software` / `web`,
+`featured` / `selected`) and the homepage Projects section is structured to
+support additional project groups — such as future selected software/web
+projects — without redesigning the Project type or components. No
+software/web project content has been added yet; that will come in a later
+iteration once verified. LinkedIn/email contact links and a CV download are
+still not implemented.

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Project } from "@/types/project";
 
 interface ProjectCardProps {
@@ -11,9 +12,7 @@ export default function ProjectCard({
   index,
   emphasize = false,
 }: ProjectCardProps) {
-  // Live Demo / GitHub only — a "View Project" detail link is intentionally
-  // withheld until detail routes exist (Iteration 4).
-  const links = [
+  const externalLinks = [
     { label: "Live Demo", href: project.demoUrl },
     { label: "GitHub", href: project.githubUrl },
   ].filter(
@@ -73,22 +72,27 @@ export default function ProjectCard({
         ))}
       </ul>
 
-      {links.length > 0 ? (
-        <div className="mt-5 flex flex-wrap gap-4 border-t border-border pt-4">
-          {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${link.label}: ${project.title}`}
-              className="text-sm font-medium text-accent hover:text-accent-hover"
-            >
-              {link.label} <span aria-hidden="true">→</span>
-            </a>
-          ))}
-        </div>
-      ) : null}
+      <div className="mt-5 flex flex-wrap gap-4 border-t border-border pt-4">
+        <Link
+          href={`/projects/${project.slug}`}
+          aria-label={`View project details: ${project.title}`}
+          className="text-sm font-medium text-accent hover:text-accent-hover"
+        >
+          View Project <span aria-hidden="true">→</span>
+        </Link>
+        {externalLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${link.label}: ${project.title}`}
+            className="text-sm font-medium text-accent hover:text-accent-hover"
+          >
+            {link.label} <span aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
     </article>
   );
 }

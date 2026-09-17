@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
 
+// Homepage-relative so they still resolve correctly from other routes
+// (e.g. /projects/[slug]), not just from "/" itself.
 const navLinks = [
-  { label: "Projects", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Stack", href: "#stack" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "/#projects" },
+  { label: "About", href: "/#about" },
+  { label: "Stack", href: "/#stack" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
