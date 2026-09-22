@@ -5,6 +5,7 @@ import DetailSection from "@/components/ui/DetailSection";
 import BulletList from "@/components/ui/BulletList";
 import GroupedList from "@/components/ui/GroupedList";
 import TagList from "@/components/ui/TagList";
+import MetricGroupList from "@/components/ui/MetricGroupList";
 import ArchitectureFlow from "@/components/project/ArchitectureFlow";
 import ProjectGallery from "@/components/project/ProjectGallery";
 import ProjectActions from "@/components/project/ProjectActions";
@@ -144,6 +145,77 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </DetailSection>
       ) : null}
 
+      {detail?.dataQuality ? (
+        <DetailSection title="Data Quality">
+          {detail.dataQuality.note ? (
+            <p className="text-base leading-relaxed text-muted">
+              {detail.dataQuality.note}
+            </p>
+          ) : null}
+          {detail.dataQuality.items.length > 0 ? (
+            <div className="mt-4">
+              <BulletList items={detail.dataQuality.items} />
+            </div>
+          ) : null}
+        </DetailSection>
+      ) : null}
+
+      {detail?.analytics && detail.analytics.length > 0 ? (
+        <DetailSection title="Analytics / Implementation">
+          <BulletList items={detail.analytics} />
+        </DetailSection>
+      ) : null}
+
+      {detail?.dashboard ? (
+        <DetailSection title="Power BI Dashboard">
+          {detail.dashboard.note ? (
+            <p className="text-base leading-relaxed text-muted">
+              {detail.dashboard.note}
+            </p>
+          ) : null}
+          {detail.dashboard.pages.length > 0 ? (
+            <div className="mt-4">
+              <BulletList items={detail.dashboard.pages} />
+            </div>
+          ) : null}
+          {detail.dashboard.modelNote ? (
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              {detail.dashboard.modelNote}
+            </p>
+          ) : null}
+        </DetailSection>
+      ) : null}
+
+      {detail?.keyMetrics && detail.keyMetrics.length > 0 ? (
+        <DetailSection title="Key Verified Metrics">
+          <MetricGroupList groups={detail.keyMetrics} />
+        </DetailSection>
+      ) : null}
+
+      {detail?.findings ? (
+        <DetailSection title="Key Findings">
+          {detail.findings.note ? (
+            <p className="text-base leading-relaxed text-muted">
+              {detail.findings.note}
+            </p>
+          ) : null}
+          {detail.findings.items.length > 0 ? (
+            <div className="mt-4">
+              <BulletList items={detail.findings.items} />
+            </div>
+          ) : null}
+        </DetailSection>
+      ) : null}
+
+      {detail?.validation && detail.validation.length > 0 ? (
+        <DetailSection title="Validation">
+          <MetricGroupList groups={detail.validation} />
+          {detail.validationNote ? (
+            <p className="mt-4 text-xs text-muted">{detail.validationNote}</p>
+          ) : null}
+        </DetailSection>
+      ) : null}
+
       {detail?.authorization ? (
         <DetailSection title="Authorization / Roles">
           {detail.authorization.note ? (
@@ -252,28 +324,7 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
 
       {detail?.evaluation && detail.evaluation.length > 0 ? (
         <DetailSection title="Evaluation">
-          <div className="space-y-6">
-            {detail.evaluation.map((group) => (
-              <div key={group.title}>
-                <h3 className="font-mono text-xs uppercase tracking-wide text-muted">
-                  {group.title}
-                </h3>
-                <dl className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                  {group.results.map((result) => (
-                    <div
-                      key={result.label}
-                      className="flex items-baseline justify-between gap-3 rounded-md border border-border bg-background px-3 py-2"
-                    >
-                      <dt className="text-sm text-muted">{result.label}</dt>
-                      <dd className="font-mono text-sm font-medium text-foreground">
-                        {result.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            ))}
-          </div>
+          <MetricGroupList groups={detail.evaluation} />
           {detail.evaluationNote ? (
             <p className="mt-4 text-xs text-muted">{detail.evaluationNote}</p>
           ) : null}

@@ -48,30 +48,30 @@ npm run build  # Production build
 Content (profile info, project details, experience, education, tech stack)
 lives in `src/data` and is kept separate from presentation components.
 
+## Projects
+
+Featured: AI Customer Operations Agent, Retail Analytics & BI Platform, OLA
+Muebles ERP, RAG Knowledge Agent, AI SQL Data Analyst Agent. Selected:
+GPSolutions Website. Four project categories are represented: `ai-data`,
+`data-bi`, `software`, and `web`.
+
 ## Current Status
 
-**Iteration 8B: Production Metadata and Final Public Smoke Test.**
+**Iteration 8B: Production Metadata and Retail Analytics & BI Platform.**
 
 The portfolio is deployed on Vercel and publicly live at the URL above
 (GitHub: [fernandezulises66-svg/personal-portfolio](https://github.com/fernandezulises66-svg/personal-portfolio),
-branch `main`). Iterations 1–7B established the visual system, five verified
-projects with detail pages and screenshots, real work/education background,
-a public recruiter contact layer (email, LinkedIn, GitHub), and CV
-integration (Download CV in Hero and Contact, sourced from a central
-`cvUrl` field). This iteration configures production-aware metadata now that
-the real deployment URL is known: `metadataBase` and a homepage/per-project
-canonical (`alternates.canonical`) using a single centralized `siteUrl`
-constant in `profile.ts`, a finalized Person JSON-LD block (adds `url`
-alongside the existing `name`/`email`/`sameAs`), and `sitemap.xml` /
-`robots.txt` routes covering the homepage and all 5 real project pages. No
-verified project or profile facts were changed.
+branch `main`), with production-aware metadata configured for the live
+deployment (`metadataBase`, homepage/per-project canonicals via a
+centralized `siteUrl` constant in `profile.ts`, a Person JSON-LD block, and
+`sitemap.xml` / `robots.txt` covering all real project pages) and a public
+smoke test against the live site passing (all project routes return 200,
+unknown slugs still 404, screenshots and CV load correctly, no phone number
+or invented claims found).
 
-A final public smoke test against the live deployment has passed: homepage
-and all 5 project routes return 200 (unknown slugs still 404), the CV PDF
-and all 10 project screenshots load correctly, canonical/Open
-Graph/Twitter/JSON-LD metadata all resolve to the production domain with no
-`localhost` references, `sitemap.xml` and `robots.txt` are live and correct,
-and the privacy/secret and verified-content checks (no phone number, no
-invented benchmark or adoption claims, LexIA scoped to Experience only) came
-back clean. This is a smoke check, not a formal accessibility or security
-audit.
+Retail Analytics & BI Platform is the newest addition: a sixth featured
+project under a new `data-bi` category, covering an end-to-end retail
+analytics pipeline (PostgreSQL dimensional warehouse, SQL analytics layer,
+6-page Power BI report validated against 16 KPIs) on the public Olist
+Brazilian E-Commerce dataset. It is not an AI/ML project and has no live
+demo — only a public GitHub repository.

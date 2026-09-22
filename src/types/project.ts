@@ -1,4 +1,4 @@
-export type ProjectCategory = "ai-data" | "software" | "web";
+export type ProjectCategory = "ai-data" | "software" | "web" | "data-bi";
 export type ProjectTier = "featured" | "selected";
 
 export interface ProjectMetric {
@@ -63,14 +63,35 @@ export interface ProjectScreenshot {
   caption?: string;
 }
 
+// A short optional note paired with a flat list of concrete points —
+// reusable wherever a section is "explain briefly, then enumerate specifics"
+// (e.g. data-quality findings, business findings). Not tied to any one
+// project category.
+export interface NoteList {
+  note?: string;
+  items: readonly string[];
+}
+
+// A multi-page BI report/dashboard deliverable — reusable for future
+// Data/BI projects with their own report pages and modeling notes.
+export interface Dashboard {
+  note?: string;
+  pages: readonly string[];
+  modelNote?: string;
+}
+
 // Presentation-independent project-detail content. Every field is optional —
 // the detail page only renders the sections a given project actually has.
 // Fields below aren't all AI-project-shaped: some (problem, systemArchitecture,
 // modules, dataModel, authorization, businessWorkflow, aiFeature,
-// deploymentNote, adoption) describe real-world software systems, and others
+// deploymentNote, adoption) describe real-world software systems, others
 // (context, siteStructure, implementation, responsiveDesign, interaction,
-// seo) describe client web work — see CLAUDE.md on keeping non-AI projects
-// out of the benchmark/AI presentation pattern.
+// seo) describe client web work, and others still (dataQuality, analytics,
+// dashboard, keyMetrics, findings, validation) describe data/BI projects —
+// see CLAUDE.md on keeping non-AI projects out of the benchmark/AI
+// presentation pattern. `validation`/`keyMetrics` intentionally reuse the
+// EvaluationGroup shape under their own headings rather than `evaluation`,
+// which stays reserved for curated AI-benchmark framing.
 export interface ProjectDetail {
   overview?: string;
   problem?: ProblemStatement;
@@ -81,10 +102,15 @@ export interface ProjectDetail {
   modules?: readonly ModuleGroup[];
   siteStructure?: readonly ModuleGroup[];
   dataModel?: DataModelSummary;
+  dataQuality?: NoteList;
   authorization?: AuthorizationSummary;
   businessWorkflow?: BusinessWorkflow;
   aiFeature?: string;
   capabilities?: readonly string[];
+  analytics?: readonly string[];
+  dashboard?: Dashboard;
+  keyMetrics?: readonly EvaluationGroup[];
+  findings?: NoteList;
   implementation?: readonly string[];
   responsiveDesign?: readonly string[];
   interaction?: readonly string[];
@@ -93,6 +119,8 @@ export interface ProjectDetail {
   deploymentNote?: string;
   adoption?: string;
   screenshots?: readonly ProjectScreenshot[];
+  validation?: readonly EvaluationGroup[];
+  validationNote?: string;
   evaluation?: readonly EvaluationGroup[];
   evaluationNote?: string;
   limitations?: readonly string[];

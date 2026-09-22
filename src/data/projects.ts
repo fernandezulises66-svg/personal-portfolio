@@ -4,6 +4,7 @@ export const categoryLabels: Record<ProjectCategory, string> = {
   "ai-data": "AI / Data",
   software: "Software",
   web: "Web",
+  "data-bi": "Data / BI",
 };
 
 // GitHub/demo links and metrics are only added once verified against the
@@ -97,6 +98,177 @@ export const projects: readonly Project[] = [
         "InMemorySaver checkpointing is non-durable.",
         "Business mutations are process/session-local.",
         "Model-backed components may vary between runs.",
+      ],
+    },
+  },
+  {
+    slug: "retail-analytics-bi-platform",
+    title: "Retail Analytics & BI Platform",
+    description:
+      "An end-to-end retail analytics project on the public Olist Brazilian E-Commerce dataset, covering data-quality profiling, a validated PostgreSQL dimensional warehouse, SQL analysis, and a 6-page Power BI dashboard with 16 KPIs verified against SQL.",
+    category: "data-bi",
+    tier: "featured",
+    tags: ["Power BI", "PostgreSQL", "SQL", "Python", "Pandas", "DAX"],
+    githubUrl:
+      "https://github.com/fernandezulises66-svg/retail-analytics-bi-platform",
+    demoUrl: null,
+    metric: { value: "16", label: "Verified KPIs" },
+    highlights: [
+      "Multi-fact dimensional warehouse",
+      "16 SQL-validated KPIs",
+      "Six-page Power BI dashboard",
+      "Data-quality and reconciliation controls",
+    ],
+    detail: {
+      overview:
+        "An end-to-end retail/e-commerce analytics project built on the public Olist Brazilian E-Commerce dataset (2016–2018, ~99,441 orders). Covers the full analytics lifecycle: profiling and measuring real data-quality issues, deterministic evidence-driven cleaning, a PostgreSQL staging and dimensional warehouse with fan-out-safe multi-fact design, a 13-file SQL analytics layer, and a 6-page Power BI dashboard validated KPI-by-KPI against the SQL layer. 124 automated tests cover raw-data immutability, cleaning transformations, warehouse reconciliation, and analytics sanity checks.",
+      problem: {
+        summary:
+          "Retail/marketplace data is rarely analysis-ready: it arrives with unresolved grain ambiguity, join fan-out risk across one-to-many tables, duplicate-looking keys that may or may not be real defects, and monetary fields that look interchangeable but aren't. Analyzing it without first measuring these properties produces confidently wrong numbers.",
+        points: [
+          "Grain ambiguity between order-scoped and person-level identifiers.",
+          "Fan-out risk when joining one-to-many tables directly (e.g. orders × items × payments).",
+          "Duplicate-looking keys that may or may not be real data defects.",
+          "Monetary fields that look interchangeable but represent different things (item sales value vs. payment value).",
+        ],
+      },
+      systemArchitecture: [
+        "Olist CSVs (raw)",
+        "Python profiling",
+        "Deterministic cleaning",
+        "PostgreSQL staging",
+        "Dimensional warehouse (6 dims, 4 facts)",
+        "SQL analytics layer (13 files)",
+        "Power BI Import model → 6-page dashboard",
+      ],
+      dataModel: {
+        note: "PostgreSQL dimensional warehouse (analytics schema) with conformed dimensions and four facts at independently verified grains — no fact is ever joined directly to another fact for additive measures:",
+        entities: [
+          "dim_date",
+          "dim_customer",
+          "dim_geography",
+          "dim_category",
+          "dim_product",
+          "dim_seller",
+          "fact_orders",
+          "fact_order_items",
+          "fact_payments",
+          "fact_reviews",
+        ],
+      },
+      dataQuality: {
+        note: "The project measured and documented real data-quality issues before writing any cleaning code, preserving source facts rather than silently altering them:",
+        items: [
+          "Order item/payment fan-out risk: 275 orders have both multiple item rows and multiple payment rows, so each side is aggregated to order grain before any join.",
+          "customer_id (order-scoped, 99,441 rows) vs. customer_unique_id (person-level, 96,096 distinct values) — a distinction the whole warehouse depends on.",
+          "Geolocation grain reduced from ~1,000,163 raw rows (26.2% exact duplicates) to 19,015 canonical zip-code prefixes.",
+          "814 duplicate review_id values are not a defect — the same review content shared across 2–3 orders by the same customer; (review_id, order_id) is the real unique key.",
+          "576 orders (0.58%) show a payment-vs-item+freight mismatch, preserved and categorized rather than corrected.",
+          "14 timestamp/status anomalies (e.g. delivered orders with a null delivery date) preserved and exposed via explicit flags.",
+          "610 products have a null category and 13 more map to untranslated category names — both kept as visible unmapped/missing rows.",
+        ],
+      },
+      analytics: [
+        "13 numbered SQL files answering specific business questions: executive KPIs, monthly performance, category/product performance, customer behavior, first-observed vs. returning customers, RFM segmentation, cohort retention, geographic performance, delivery performance, reviews vs. delivery, payment behavior, and the impact of known data-quality issues.",
+        "CTEs throughout for order-grain pre-aggregation before any join, preventing the same fan-out risk enforced in the warehouse.",
+        "Window functions: LAG() for month-over-month growth, ROW_NUMBER() with an explicit tie-break for first-observed orders, RANK() for leaderboards, NTILE(5) for RFM scoring, PERCENTILE_CONT(0.5) for median delivery days.",
+        "Findings involving two measured quantities (e.g. delivery lateness and review score) are reported as observed associations, never causation.",
+      ],
+      dashboard: {
+        note: "Built in Power BI Desktop, Import mode, connected directly to the PostgreSQL analytics schema. The model has 6 dimensions, 4 facts, 4 disconnected helper views, and 21 active relationships, with zero fact-to-fact relationships. All 16 KPIs were checked against the SQL analysis layer and confirmed matching. Six pages, each answering a specific decision question:",
+        pages: [
+          "Executive Overview",
+          "Sales & Categories",
+          "Customers & Retention",
+          "Geographic Performance",
+          "Delivery & Customer Experience",
+          "Payments & Data Quality",
+        ],
+        modelNote:
+          "A real model correction, kept visible: the original plan specified 22 relationships, including dim_geography → dim_seller. Power BI Desktop correctly refused to activate it after detecting an ambiguous filter path to fact_order_items (reachable both directly from dim_geography and indirectly via dim_seller). The final model has 21 relationships — seller geography remains fully available via dim_seller's own city/state/zip columns. This reflects model validation, not a failure.",
+      },
+      keyMetrics: [
+        {
+          title: "Verified Business Metrics",
+          results: [
+            { label: "Total Orders", value: "99,441" },
+            { label: "Unique Customers", value: "96,096" },
+            { label: "Item Sales Value", value: "R$13.59M" },
+            { label: "Average Order Value", value: "R$137.75" },
+            { label: "Items Sold", value: "112,650" },
+            { label: "Late Delivery Rate", value: "8.11%" },
+            { label: "Average Review Score", value: "4.09" },
+            { label: "Repeat Customer Rate", value: "3.12%" },
+          ],
+        },
+      ],
+      findings: {
+        note: "Findings below are read directly from the project's business-insights analysis. Delivery/review findings are reported as observed associations, never causation:",
+        items: [
+          "health_beauty leads all categories at approximately 9.26% of item sales value.",
+          "Repeat-customer rate is approximately 3.12%; first-observed orders drive about 97.01% of item sales value.",
+          "Late-delivery rate is approximately 8.11%; longer delivery delays are associated with lower observed review scores.",
+          "São Paulo (SP) has the highest marketplace activity, accounting for about 42% of all orders.",
+          "576 orders show a payment-vs-item+freight mismatch, representing a small share (0.58%) of reconciled orders.",
+        ],
+      },
+      screenshots: [
+        {
+          src: "/projects/retail-analytics-bi/executive-overview.png",
+          alt: "Power BI Executive Overview page showing total orders, unique customers, item sales value, average order value, late delivery rate, average review score, and monthly trend charts",
+          caption:
+            "Executive Overview page — headline KPIs and monthly order/sales trends across the 2016–2018 observation window.",
+        },
+        {
+          src: "/projects/retail-analytics-bi/sales-categories.png",
+          alt: "Power BI Sales & Categories page showing top categories and products by item sales value, items sold, and category performance contribution",
+          caption:
+            "Sales & Categories page — category and product performance, with health_beauty leading at 9.26% of item sales value.",
+        },
+        {
+          src: "/projects/retail-analytics-bi/customers-retention.png",
+          alt: "Power BI Customers & Retention page showing repeat customer rate, RFM segmentation, and a customer cohort retention table",
+          caption:
+            "Customers & Retention page — RFM segmentation and cohort retention, showing a 3.12% repeat-customer rate.",
+        },
+        {
+          src: "/projects/retail-analytics-bi/geography.png",
+          alt: "Power BI Geographic Performance page showing orders, item sales value, and delivery performance broken down by Brazilian state",
+          caption:
+            "Geographic Performance page — orders, sales, and delivery speed by state, led by São Paulo.",
+        },
+        {
+          src: "/projects/retail-analytics-bi/delivery-customer-experience.png",
+          alt: "Power BI Delivery & Customer Experience page showing on-time vs. late deliveries and average review score by delivery-delay bucket",
+          caption:
+            "Delivery & Customer Experience page — average review score declines as delivery delay increases (observed association, not causation).",
+        },
+        {
+          src: "/projects/retail-analytics-bi/payments-data-quality.png",
+          alt: "Power BI Payments & Data Quality page showing payment value by type and explicit data-quality notes on reconciliation mismatches",
+          caption:
+            "Payments & Data Quality page — payment behavior alongside explicit, visible data-quality notes rather than hidden corrections.",
+        },
+      ],
+      validation: [
+        {
+          title: "Automated Validation",
+          results: [
+            { label: "Verified KPIs", value: "16/16" },
+            { label: "Warehouse reconciliation checks", value: "63/63" },
+            { label: "Analytics sanity checks", value: "9/9" },
+            { label: "Automated tests (pytest)", value: "124/124" },
+          ],
+        },
+      ],
+      validationNote:
+        "These results apply to this project's own warehouse/analytics validation suite and are not a general accuracy or correctness guarantee beyond this dataset and pipeline.",
+      limitations: [
+        "Historical dataset (2016–2018) — not representative of the current Brazilian e-commerce market.",
+        "No verified product-cost data, so profit, margin, and ROI are out of scope.",
+        "17 of 576 monetary mismatches and 6 canceled-with-delivery-date orders remain unexplained after investigation.",
+        "Delivery-vs-review-score and other cross-metric findings are observed associations only, never causal claims.",
+        "Power BI report is validated locally but not deployed to Power BI Service.",
       ],
     },
   },
