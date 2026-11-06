@@ -52,6 +52,7 @@ lives in `src/data` and is kept separate from presentation components.
 
 Featured: AI Customer Operations Agent, Retail Analytics & BI Platform, OLA
 Muebles ERP, RAG Knowledge Agent, AI SQL Data Analyst Agent. Selected:
+Legis Landing Page (built as part of work at mooba; no public repo link),
 GPSolutions Website. Four project categories are represented: `ai-data`,
 `data-bi`, `software`, and `web`.
 

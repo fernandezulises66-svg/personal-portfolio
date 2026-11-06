@@ -7,6 +7,13 @@ export const categoryLabels: Record<ProjectCategory, string> = {
   "data-bi": "Data / BI",
 };
 
+// CTA wording for a project's demoUrl. Conventional website projects
+// (category "web") link to the real public site, so "Live Demo" would be
+// misleading; every other category keeps "Live Demo" for its app/demo.
+export function getDemoLinkLabel(project: Pick<Project, "category">): string {
+  return project.category === "web" ? "Visit Website" : "Live Demo";
+}
+
 // GitHub/demo links and metrics are only added once verified against the
 // actual project repositories — see CLAUDE.md. Order reflects portfolio
 // presentation (most complete demonstration first), not a tech ranking.
@@ -605,6 +612,77 @@ export const projects: readonly Project[] = [
         "Deliberately read-only by design.",
         "Not connected to a production database.",
         "LLM-generated SQL can vary before safety validation catches unsafe queries.",
+      ],
+    },
+  },
+  {
+    // Built as part of Ulises's work at mooba; public presentation approved
+    // by the user. Tech verified against the landing's source repo (static
+    // HTML/CSS/vanilla JS + one Node.js serverless function on Vercel). The
+    // repo stays unlinked (githubUrl null) — employer work.
+    slug: "legis-landing-page",
+    title: "Legis Landing Page",
+    description:
+      "The public landing page for Legis, a mooba product that gives organizations conversational access to their own regulations. Built as part of my work at mooba as a responsive static page in HTML, CSS and vanilla JavaScript, with a scripted chat demo and a serverless demo-request form.",
+    category: "web",
+    tier: "selected",
+    tags: ["HTML", "CSS", "JavaScript", "Node.js", "Vercel", "Responsive Design"],
+    githubUrl: null,
+    demoUrl: "https://legis.ar/",
+    highlights: [
+      "Framework-free responsive landing",
+      "Scripted product chat demo",
+      "Serverless demo-request form",
+      "Accessible navigation, FAQ and form states",
+    ],
+    detail: {
+      overview:
+        "The public landing page for Legis, implemented as part of Ulises's work at mooba. It is a single static page written in HTML, CSS and vanilla JavaScript — no frontend framework or UI library — deployed on Vercel, with one Node.js serverless function that handles demo requests. The page explains what Legis is, its use cases, an example consultation, how it is rolled out in an organization, and common questions, and ends in a demo-request form.",
+      context:
+        "Legis is a mooba product that lets an organization — public or private — offer conversational access to its own body of regulations. Ulises's contribution here is the landing page implementation: the page, its interactions and the demo-request endpoint. The visual identity comes from the existing Legis design, and the product copy and claims are the Legis team's. This project does not cover the Legis platform itself, and the landing is not connected to it.",
+      implementation: [
+        "Single static HTML page with hand-written CSS built on design tokens (CSS custom properties) for the Legis palette and typography.",
+        "Page sections: hero, what Legis is, use cases, an example consultation, rollout steps, platform modules, about, FAQ, and a demo-request form.",
+        "Demo-request form posts to a Node.js serverless function on Vercel that validates every field server-side, filters bots with a honeypot field, and forwards the request by email through the Resend API, with credentials kept in environment variables.",
+      ],
+      responsiveDesign: [
+        "Breakpoints at 980px and 600px, plus an intermediate 981–1079px range tuned so the floating example-question chips don't overlap.",
+        "Desktop navigation switches to a hamburger-triggered mobile menu below 981px; the menu closes automatically if the viewport widens while it is open.",
+        "Chat examples reserve the height of their longest possible answer, recalculated on resize and after fonts load, so the layout doesn't shift when answers appear.",
+        "Lazy-loaded WebP images, with a responsive srcset for the larger photo.",
+      ],
+      interaction: [
+        "The hero chat replays a pre-written question and answer with a short “thinking” state; the example consultation switches between three predefined questions via chip buttons. Both are scripted, not live product queries.",
+        "FAQ accordion with one item open at a time, using aria-expanded and hidden panels.",
+        "Mobile menu with Escape-to-close and focus management; the rest of the page is made inert while it is open.",
+        "Client- and server-side form validation with per-field error messages, a sending state, and a success message shown only after the server confirms.",
+        "Scroll-reveal animations via IntersectionObserver, and every animation respects prefers-reduced-motion.",
+      ],
+      screenshots: [
+        {
+          src: "/projects/legis/hero.png",
+          alt: "Legis landing hero on a navy background with the headline 'La normativa de tu gobierno, al alcance de quien la necesite', a 'Solicitar una demo' button, and a chat card answering a question about renewing a commercial license with two citation tags",
+          caption:
+            "Hero section with a scripted example chat. The regulation citations shown are illustrative.",
+        },
+        {
+          src: "/projects/legis/product-section.png",
+          alt: "'¿Qué es Legis?' section with a short product description, surrounded by floating example questions about ordinances, decrees, resolutions and legal requirements",
+          caption:
+            "Product introduction section, with example citizen questions arranged around the description.",
+        },
+        {
+          src: "/projects/legis/chat-demo.png",
+          alt: "'Así funciona' section showing a chat window answering a question about noise in residential zones with one citation tag, three selectable example-question buttons below it, and a 'Solicitar una demo' button",
+          caption:
+            "Example consultation: the chip buttons swap between predefined questions and answers. Scripted, with illustrative citations.",
+        },
+      ],
+      limitations: [
+        "The chat examples are scripted and use illustrative regulation citations; the landing does not query the Legis product.",
+        "Single static page — no CMS, so content changes are made directly in the HTML.",
+        "No automated test suite in the landing repository.",
+        "Screenshots show the desktop layout only.",
       ],
     },
   },

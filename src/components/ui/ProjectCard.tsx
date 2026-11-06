@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Project } from "@/types/project";
+import { getDemoLinkLabel } from "@/data/projects";
 
 interface ProjectCardProps {
   project: Project;
@@ -13,7 +14,7 @@ export default function ProjectCard({
   emphasize = false,
 }: ProjectCardProps) {
   const externalLinks = [
-    { label: "Live Demo", href: project.demoUrl },
+    { label: getDemoLinkLabel(project), href: project.demoUrl },
     { label: "GitHub", href: project.githubUrl },
   ].filter(
     (link): link is { label: string; href: string } => Boolean(link.href),
