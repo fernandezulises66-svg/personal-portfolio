@@ -19,92 +19,115 @@ export function getDemoLinkLabel(project: Pick<Project, "category">): string {
 // presentation (most complete demonstration first), not a tech ranking.
 export const projects: readonly Project[] = [
   {
-    slug: "ai-customer-operations-agent",
-    title: "AI Customer Operations Agent",
+    // Facts verified against the repo's public default branch (main) and the
+    // live Vercel demo. Separate from the real OLA Muebles ERP project below:
+    // fictional data, simulated actions.
+    slug: "ola-erp-intelligence",
+    title: "OLA ERP Intelligence — Multi-Agent AI System",
     description:
-      "A stateful customer-operations workflow that combines LLM-based request interpretation with deterministic policies, simulated operational actions, and human approval for sensitive workflows.",
+      "A production-oriented multi-agent AI system for ERP operations over a fictional ERP dataset, combining LangGraph orchestration, hybrid RAG, deterministic analysis tools, persistent conversational memory, human approval for write actions, and end-to-end observability.",
     category: "ai-data",
     tier: "featured",
-    tags: ["Python", "LangGraph", "OpenAI", "Pydantic", "Streamlit"],
-    githubUrl:
-      "https://github.com/fernandezulises66-svg/ai-customer-operations-agent",
-    demoUrl:
-      "https://ai-customer-operations-agent-vs4yvseepssw2pvemitjhx.streamlit.app/",
-    metric: { value: "20/20", label: "Curated E2E benchmark" },
+    tags: ["Python", "LangGraph", "FastAPI", "Pinecone", "Redis", "Docker"],
+    githubUrl: "https://github.com/fernandezulises66-svg/ola-erp-intelligence",
+    demoUrl: "https://ola-erp-intelligence.vercel.app/",
+    metric: { value: "35", label: "Automated tests" },
     highlights: [
-      "Stateful LangGraph workflow",
-      "Human-in-the-loop approval",
-      "Deterministic policy routing",
-      "Simulated operational actions",
+      "Hierarchical multi-agent orchestration",
+      "Hybrid RAG with BM25 + Pinecone",
+      "Persistent memory & human-in-the-loop",
+      "Async API, worker queue & observability",
     ],
     detail: {
       overview:
-        "A stateful customer-operations workflow combining LLM-based request interpretation with deterministic business rules, safe simulated operational actions, human approval, checkpointed state, and grounded final responses.",
+        "A production-oriented AI engineering project that lets users ask operational questions over a simulated ERP environment and safely execute actions through human approval. A LangGraph supervisor coordinates research and deterministic analysis agents before structured synthesis, followed by deterministic risk evaluation and approval-gated action execution, while Redis provides durable conversational state and Arize Phoenix provides end-to-end tracing.",
+      context:
+        "Built as part of an AI Engineering program using fictional ERP data and business rules. The architecture is designed to demonstrate production-oriented patterns without connecting to the real OLA Muebles ERP — it is a separate project from the OLA Muebles ERP listed in this portfolio. The public demo replays real runs recorded from the system rather than calling a live backend.",
       engineeringDecisions: [
-        "LLM responsibilities are scoped to intent/urgency classification, explicit shipping-address extraction when required, and customer-facing response phrasing — everything else is deterministic.",
-        "Deterministic code owns operational data, order resolution, policy evaluation, routing, proposed-action mapping, approval enforcement, action execution, and audit behavior.",
-        "Conditional routing resolves to one of five branches: clarification, information, blocked, safe action, or human approval.",
-        "Sensitive actions pause on interrupt(); after an explicit reviewer decision, execution resumes via Command(resume=...) into approved execution or rejection, then a final response.",
+        "Separated knowledge retrieval, deterministic calculations, synthesis, and operational actions instead of allowing the LLM to handle every responsibility.",
+        "Used a hybrid RAG pipeline combining BM25 and Pinecone vector retrieval with Reciprocal Rank Fusion, including priority handling for exact ERP identifiers.",
+        "Moved long-running requests out of the HTTP request lifecycle using a Redis queue and asynchronous workers.",
+        "Persisted LangGraph checkpoints and conversation state in Redis so multi-turn conversations survive API restarts.",
+        "Placed a deterministic human-approval gate before any side effect, ensuring sensitive actions cannot execute only because the LLM requested them.",
+        "Used Pydantic contracts across API requests, agent tools, supervisor decisions, queue messages, and structured final responses.",
       ],
       architecture: [
-        "Customer Request",
-        "Intake",
-        "Structured Classification",
-        "Context Loading",
-        "Order Resolution",
-        "Policy Evaluation",
-        "Conditional Routing",
+        "Client / Process",
+        "FastAPI Async API",
+        "Redis Job Queue",
+        "Async Worker",
+        "LangGraph Supervisor",
+        "Research Agent — Hybrid RAG",
+        "Analysis Agent — Deterministic Tools",
+        "Structured Synthesizer",
+        "Risk Evaluation",
+        "Human Approval",
+        "Simulated ERP Action",
+      ],
+      capabilities: [
+        "Natural-language operational questions over ERP documentation.",
+        "Hierarchical supervisor coordinating specialized research and analysis agents.",
+        "Hybrid semantic and lexical retrieval with BM25, Pinecone, and RRF.",
+        "Deterministic arithmetic, date, and percentage/discount calculations through validated tools, applied to business rules retrieved from the ERP manual.",
+        "Multi-turn conversational memory persisted across API restarts.",
+        "Human-in-the-loop approval before operational write actions.",
+        "Server-Sent Events for live workflow progress.",
+        "Tracing of agent nodes, LLM calls, tools, tokens, cost, and latency with Arize Phoenix.",
       ],
       safety: [
-        "Deterministic policy layer decides what is allowed, not the model.",
-        "Human approval is required before any sensitive action executes.",
-        "No sensitive action executes before an interrupt/resume approval.",
-        "The agent does not guess missing order or address information.",
-        "Approval payloads shown for review are minimal.",
-        "Audit events are PII-free.",
-        "Operational actions are simulated and in-memory, not connected to real systems.",
-        "Public UI error messages are safe and do not leak internal details.",
+        "No operational side effect occurs before explicit human approval.",
+        "Business calculations are delegated to deterministic tools instead of relying on LLM arithmetic.",
+        "Pydantic validation protects tool inputs and structured outputs.",
+        "Supervisor delegation and recursion limits cap agent loops.",
+        "The RAG layer degrades to BM25 if vector retrieval becomes unavailable.",
       ],
       screenshots: [
         {
-          src: "/projects/customer-operations/approval-pending.png",
-          alt: "Pending human approval card for a simulated refund, showing approve/reject actions and collapsible workflow-detail and audit-log sections",
+          src: "/projects/ola-erp-intelligence/supervisor-trace.png",
+          alt: "Arize Phoenix trace of a multi-step question, showing the supervisor span with its ChatAnthropic call and the alternating investigador, analista and supervisor spans in the trace tree",
           caption:
-            "Human-in-the-loop approval required before a simulated refund action can execute.",
+            "Phoenix trace of a multi-step question: the supervisor delegates to the research and analysis agents across several rounds.",
         },
         {
-          src: "/projects/customer-operations/approval-completed.png",
-          alt: "Case intake form with a synthetic customer refund request and the resulting simulated approval confirmation message",
+          src: "/projects/ola-erp-intelligence/hybrid-rag-output.png",
+          alt: "Arize Phoenix view of a buscar_manual tool span whose output lists retrieved manual fragments with source file, chunk ID, RRF score and retrieval methods bm25 and vectorial",
           caption:
-            "Case intake for a synthetic customer request, ending in a simulated refund confirmation response.",
+            "Hybrid RAG tool output: each fragment carries its source, chunk ID, RRF score, and the retrieval methods that found it.",
+        },
+        {
+          src: "/projects/ola-erp-intelligence/hitl-pause.png",
+          alt: "Arize Phoenix session showing a request to apply an 18% discount to a fictional quote, with the turn output WAITING_APPROVAL",
+          caption:
+            "A write request pauses in WAITING_APPROVAL before any action runs (fictional ERP data).",
+        },
+        {
+          src: "/projects/ola-erp-intelligence/hitl-approval-action.png",
+          alt: "Arize Phoenix session second turn with an approval payload from the reviewer role gerencia, followed by the output confirming the aplicar_descuento action was recorded",
+          caption:
+            "After explicit approval, the graph resumes and records the simulated aplicar_descuento action.",
         },
       ],
-      evaluation: [
+      validation: [
         {
-          title: "Curated E2E Benchmark — 20 cases (latest reviewed run)",
+          title: "System Validation",
           results: [
-            { label: "Intent", value: "20/20" },
-            { label: "Urgency", value: "20/20" },
-            { label: "Order resolution", value: "20/20" },
-            { label: "Policy", value: "20/20" },
-            { label: "Routing", value: "20/20" },
-            { label: "Action proposal", value: "11/11 applicable" },
-            { label: "Approval behavior", value: "7/7 applicable" },
-            { label: "Mutation behavior", value: "20/20" },
-            { label: "Final state", value: "20/20" },
-            { label: "Response fact-check", value: "20/20" },
+            { label: "Automated tests", value: "35" },
+            { label: "End-to-end scenarios", value: "5" },
+            { label: "Concurrent test p95 latency", value: "51.9 s" },
+            { label: "Full observed test-run cost", value: "~$0.03" },
+            { label: "Conversation after API restart", value: "Preserved" },
           ],
         },
       ],
-      evaluationNote:
-        "These results apply only to this curated benchmark and are not claims of general model accuracy or production reliability.",
+      validationNote:
+        "Metrics are from the documented project test run and describe this controlled demonstration environment, not production SLA guarantees.",
       limitations: [
-        "Uses a fictional company and fictional data.",
-        "Operational actions are simulated only.",
-        "No real payment, logistics, or CRM integration.",
-        "InMemorySaver checkpointing is non-durable.",
-        "Business mutations are process/session-local.",
-        "Model-backed components may vary between runs.",
+        "ERP data, documentation, and business rules are fictional.",
+        "Approved actions are simulated in Redis rather than written to the real OLA ERP.",
+        "The demo architecture does not include production authentication.",
+        "Critical-action detection currently relies primarily on imperative action patterns.",
+        "Hybrid retrieval depends on external embedding and Pinecone services.",
+        "The public Vercel demo is a static replay of five real runs recorded from the system, with compressed timing; it has no live backend and does not accept new questions.",
       ],
     },
   },
@@ -447,6 +470,96 @@ export const projects: readonly Project[] = [
         "No formal production-grade security audit or penetration test has been performed.",
         "Screenshots have not yet been added to the portfolio.",
         "Repository visibility/access has not been confirmed, so no GitHub link is shown.",
+      ],
+    },
+  },
+  {
+    slug: "ai-customer-operations-agent",
+    title: "AI Customer Operations Agent",
+    description:
+      "A stateful customer-operations workflow that combines LLM-based request interpretation with deterministic policies, simulated operational actions, and human approval for sensitive workflows.",
+    category: "ai-data",
+    tier: "featured",
+    tags: ["Python", "LangGraph", "OpenAI", "Pydantic", "Streamlit"],
+    githubUrl:
+      "https://github.com/fernandezulises66-svg/ai-customer-operations-agent",
+    demoUrl:
+      "https://ai-customer-operations-agent-vs4yvseepssw2pvemitjhx.streamlit.app/",
+    metric: { value: "20/20", label: "Curated E2E benchmark" },
+    highlights: [
+      "Stateful LangGraph workflow",
+      "Human-in-the-loop approval",
+      "Deterministic policy routing",
+      "Simulated operational actions",
+    ],
+    detail: {
+      overview:
+        "A stateful customer-operations workflow combining LLM-based request interpretation with deterministic business rules, safe simulated operational actions, human approval, checkpointed state, and grounded final responses.",
+      engineeringDecisions: [
+        "LLM responsibilities are scoped to intent/urgency classification, explicit shipping-address extraction when required, and customer-facing response phrasing — everything else is deterministic.",
+        "Deterministic code owns operational data, order resolution, policy evaluation, routing, proposed-action mapping, approval enforcement, action execution, and audit behavior.",
+        "Conditional routing resolves to one of five branches: clarification, information, blocked, safe action, or human approval.",
+        "Sensitive actions pause on interrupt(); after an explicit reviewer decision, execution resumes via Command(resume=...) into approved execution or rejection, then a final response.",
+      ],
+      architecture: [
+        "Customer Request",
+        "Intake",
+        "Structured Classification",
+        "Context Loading",
+        "Order Resolution",
+        "Policy Evaluation",
+        "Conditional Routing",
+      ],
+      safety: [
+        "Deterministic policy layer decides what is allowed, not the model.",
+        "Human approval is required before any sensitive action executes.",
+        "No sensitive action executes before an interrupt/resume approval.",
+        "The agent does not guess missing order or address information.",
+        "Approval payloads shown for review are minimal.",
+        "Audit events are PII-free.",
+        "Operational actions are simulated and in-memory, not connected to real systems.",
+        "Public UI error messages are safe and do not leak internal details.",
+      ],
+      screenshots: [
+        {
+          src: "/projects/customer-operations/approval-pending.png",
+          alt: "Pending human approval card for a simulated refund, showing approve/reject actions and collapsible workflow-detail and audit-log sections",
+          caption:
+            "Human-in-the-loop approval required before a simulated refund action can execute.",
+        },
+        {
+          src: "/projects/customer-operations/approval-completed.png",
+          alt: "Case intake form with a synthetic customer refund request and the resulting simulated approval confirmation message",
+          caption:
+            "Case intake for a synthetic customer request, ending in a simulated refund confirmation response.",
+        },
+      ],
+      evaluation: [
+        {
+          title: "Curated E2E Benchmark — 20 cases (latest reviewed run)",
+          results: [
+            { label: "Intent", value: "20/20" },
+            { label: "Urgency", value: "20/20" },
+            { label: "Order resolution", value: "20/20" },
+            { label: "Policy", value: "20/20" },
+            { label: "Routing", value: "20/20" },
+            { label: "Action proposal", value: "11/11 applicable" },
+            { label: "Approval behavior", value: "7/7 applicable" },
+            { label: "Mutation behavior", value: "20/20" },
+            { label: "Final state", value: "20/20" },
+            { label: "Response fact-check", value: "20/20" },
+          ],
+        },
+      ],
+      evaluationNote:
+        "These results apply only to this curated benchmark and are not claims of general model accuracy or production reliability.",
+      limitations: [
+        "Uses a fictional company and fictional data.",
+        "Operational actions are simulated only.",
+        "No real payment, logistics, or CRM integration.",
+        "InMemorySaver checkpointing is non-durable.",
+        "Business mutations are process/session-local.",
+        "Model-backed components may vary between runs.",
       ],
     },
   },
